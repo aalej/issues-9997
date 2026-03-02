@@ -30,3 +30,9 @@ Error signing in: auth/error-code:-47 Firebase: Error (auth/error-code:-47).
 ```
 FirebaseAuthError: Firebase Auth Blocking token has incorrect "aud" (audience) claim. Expected "run.app" but got "https://asia-northeast1-PROJECT_ID.cloudfunctions.net/beforeSignIn"
 ```
+
+## Notes
+
+Performing any update on the `beforeUserSignedIn` function will automatically and correctly update the `Before sign in` function in auth console
+
+<img src="./images/auth_console_ok.png"/>
