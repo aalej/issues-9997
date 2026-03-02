@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/12.10.0/firebase-app-compat.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/12.10.0/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-functions-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-messaging-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-storage-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-analytics-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-remote-config-compat.js"></script>
+  <script defer src="/__/firebase/12.10.0/firebase-performance-compat.js"></script>
+  <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+</head>
+
+<body>
+  <div>
+    <div>Email:</div>
+    <input type="text" id="emailInput" value="foo@bar.baz">
+  </div>
+  <div>
+    <div>Password:</div>
+    <input type="password" id="passwordInput" value="password">
+  </div>
+  <div>
+    <button id="signIn">Sign In</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const loadEl = document.querySelector('#load');
+
+      try {
+        let app = firebase.app();
+        let features = [
+          'auth',
+          'database',
+          'firestore',
+          'functions',
+          'messaging',
+          'storage',
+          'analytics',
+          'remoteConfig',
+          'performance',
+        ].filter(feature => typeof app[feature] === 'function');
+
+        const signInButton = document.getElementById('signIn');
+        signInButton.addEventListener('click', () => {
+          const email = document.getElementById('emailInput').value;
+          const password = document.getElementById('passwordInput').value;
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              console.log('User signed in:', user);
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.error('Error signing in:', errorCode, errorMessage);
+            });
+        });
+
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
+</body>
+
+</html>
