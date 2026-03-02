@@ -1,5 +1,9 @@
 # Repro for issue 9997
 
+## Versions
+
+firebase-tools: v15.8.0
+
 ## Pre-requisite
 
 1. Blaze plan project
